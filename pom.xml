@@ -32,7 +32,7 @@
         </dependency>
 
         <dependency>
-            <groupId>h2.database</groupId>
+            <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
         </dependency>
         <dependency>
