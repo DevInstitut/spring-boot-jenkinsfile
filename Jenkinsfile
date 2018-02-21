@@ -6,6 +6,14 @@ pipeline {
                 sh './mvnw clean package'
             }
         }
+        stage('quality') {
+            steps {
+                withSonarQubeEnv() {
+                  // requires SonarQube Scanner for Maven 3.2+
+                  sh './mvnw org.sonarsource.scanner.maven:sonar-maven-plugin:3.2:sonar'
+                }
+            }
+        }
          stage('deploy') {
             steps {
                sshagent(['498f56ad-08cc-4ce4-a8dc-d21027509ca5']) {
