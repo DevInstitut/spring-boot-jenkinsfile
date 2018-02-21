@@ -6,12 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 @RestController
+@CrossOrigin
 public class VersionController {
 
     @Value("${app.version}")
@@ -24,7 +26,7 @@ public class VersionController {
         this.versionRepo.save(new Version(appVersion));
     }
 
-    @GetMapping("/version")
+    @GetMapping("/versions")
     public List<Version> getVersion() {
         return this.versionRepo.findAll();
     }

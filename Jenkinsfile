@@ -1,5 +1,9 @@
 pipeline {
     agent any
+    environment {
+        PROD_GIT = "git+ssh://git@push-par-clevercloud-customers.services.clever-cloud.com/app_2a0505a4-9cd6-42ee-9b95-996ea3c4dbfc.git"
+        GIT_CREDENTIAL_ID = '498f56ad-08cc-4ce4-a8dc-d21027509ca5'
+    }
     stages {
         stage('build') {
             steps {
@@ -21,10 +25,10 @@ pipeline {
                 branch 'master'
             }
             steps {
-               sshagent(['498f56ad-08cc-4ce4-a8dc-d21027509ca5']) {
+               sshagent(["${GIT_CREDENTIAL_ID}"]) {
                   sh "git checkout ${GIT_BRANCH}"
                   sh "git pull"
-                  sh "git push ${ABSENCES_BACK_PROD} ${GIT_BRANCH}:master"
+                  sh "git push ${PROD_GIT} ${GIT_BRANCH}:master"
                   slackSend channel: '#jenkins_nantes', color: 'good', message: "Déploiement en cours chez Clever Cloud ! ${env.JOB_NAME} commit ${env.GIT_COMMIT}"
                }
             }
