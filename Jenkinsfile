@@ -10,7 +10,7 @@ pipeline {
             steps {
                sshagent(['498f56ad-08cc-4ce4-a8dc-d21027509ca5']) {
                   sh 'git branch'
-                  sh 'git push git+ssh://git@push-par-clevercloud-customers.services.clever-cloud.com/app_2a0505a4-9cd6-42ee-9b95-996ea3c4dbfc.git jenkins-declarative-pipeline:master'
+                  sh "git push git+ssh://git@push-par-clevercloud-customers.services.clever-cloud.com/app_2a0505a4-9cd6-42ee-9b95-996ea3c4dbfc.git ${env.BRANCH_NAME}:master"
                }
             }
         }
