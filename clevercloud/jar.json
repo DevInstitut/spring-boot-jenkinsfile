@@ -1,7 +1,7 @@
 {
   "build": {
     "type": "maven",
-    "goal": "clean package -Pprod"
+    "goal": "clean package"
   },
   "deploy": {
     "jarName": "target/back.jar"
