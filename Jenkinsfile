@@ -26,10 +26,10 @@ pipeline {
     }
     post {
         success {
-            echo 'OK'
+           slackSend channel: '#test', color: 'good', message: "Succès ! ${env.JOB_NAME} - ${env.GIT_BRANCH} - ${env.BUILD_NUMBER}"
         }
         failure {
-            echo 'KO'
+            slackSend channel: '#test', color: 'danger', message: "Oops ! ${env.JOB_NAME} - ${env.GIT_BRANCH} - ${env.BUILD_NUMBER}"
         }
     }
 }
