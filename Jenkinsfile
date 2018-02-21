@@ -1,5 +1,6 @@
 pipeline {
     agent any
+    triggers { pollSCM('* * * * *') }
     stages {
         stage('build') {
             steps {
@@ -26,10 +27,10 @@ pipeline {
     }
     post {
         success {
-           slackSend channel: '#test', color: 'good', message: "Succès ! ${env.JOB_NAME} - ${env.GIT_BRANCH} - ${env.BUILD_NUMBER}"
+           slackSend channel: '#test', color: 'good', message: "Succès ! ${env.JOB_NAME} COMMIT ${env.GIT_COMMIT} (<${env.BUILD_URL}|Open>)"
         }
         failure {
-            slackSend channel: '#test', color: 'danger', message: "Oops ! ${env.JOB_NAME} - ${env.GIT_BRANCH} - ${env.BUILD_NUMBER}"
+            slackSend channel: '#test', color: 'danger', message: "Oops ! ${env.JOB_NAME} COMMIT ${env.GIT_COMMIT} (<${env.BUILD_URL}|Open>)"
         }
     }
 }
