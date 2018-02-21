@@ -4,6 +4,6 @@
     "goal": "clean package -Pprod"
   },
   "deploy": {
-    "jarName": "target/back.war"
+    "jarName": "target/back.jar"
   }
 }
