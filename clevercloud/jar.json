@@ -4,6 +4,6 @@
     "goal": "clean package"
   },
   "deploy": {
-    "jarName": "target/back.jar"
+    "jarName": "target/back.war"
   }
 }
