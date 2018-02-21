@@ -2,6 +2,7 @@ package dev.controller;
 
 import dev.domain.Version;
 import dev.repository.VersionRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
@@ -15,6 +16,7 @@ public class VersionController {
 
     @Value("${app.version}")
     private String appVersion;
+    @Autowired
     private VersionRepository versionRepo;
 
     @EventListener(ContextRefreshedEvent.class)
