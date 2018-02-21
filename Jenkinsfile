@@ -8,6 +8,9 @@ pipeline {
             }
         }
         stage('quality') {
+            when {
+                branch 'master'
+            }
             steps {
                 withSonarQubeEnv('Sonar-Nantes') {
                   // requires SonarQube Scanner for Maven 3.2+
@@ -16,6 +19,9 @@ pipeline {
             }
         }
          stage('deploy') {
+             when {
+                    branch 'master'
+            }
             steps {
                sshagent(['498f56ad-08cc-4ce4-a8dc-d21027509ca5']) {
                   sh "git checkout ${GIT_BRANCH}"
@@ -23,7 +29,6 @@ pipeline {
                }
             }
         }
-
     }
     post {
         success {
